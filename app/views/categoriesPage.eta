@@ -1,0 +1,47 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.categoriesPage) { %> 
+    <h3>Categories</h3>
+    <% if (it.user && it.user.admin) { %>
+        <ul>
+            <% it.categories.forEach((category) => { %>
+                <li><a href="/categories/<%= category.id %>"><%=category.name%></a></li>
+                <form method="POST" action="/categories/<%= category.id %>/delete">
+                    <fieldset>
+                        <input type="submit" value="Delete"/>
+                    </fieldset>
+                </form>
+            <% }); %>
+        </ul>
+
+        <h3>Create a category</h3>
+
+        <% if (it.errors) { %>    
+            <ul>
+                <% Object.keys(it.errors).forEach((attribute) => { %>
+                    <% Object.values(it.errors[attribute]).forEach((err) => { %>
+                        <li><%= err %></li>
+                    <% }); %>
+                <% }); %>
+            </ul>
+        <% } %>
+
+        <form method="POST" action="/categories">
+            <fieldset>
+                Category: <input type="text" name="name" value="<%= it.name %>"/>            
+                <input type="submit" value="Create category"/>
+            </fieldset>
+        </form>
+        
+    <% } else { %> 
+        <ul style="list-style-type: none;">
+            <% it.categories.forEach((category) => { %>
+                <p><h3><a href="/categories/<%= category.id %>"><%= category.name %></a></h3> 
+                <img src="https://www.cabq.gov/artsculture/biopark/news/10-cool-facts-about-penguins/@@images/1a36b305-412d-405e-a38b-0947ce6709ba.jpeg" alt="" style="max-width: 345.0px;">
+                </p>
+            <% }); %>
+        </ul>   
+    <% } %>
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>

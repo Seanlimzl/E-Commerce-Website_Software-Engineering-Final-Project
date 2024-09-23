@@ -1,0 +1,35 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Binary Leaves</h1>
+
+<h3>Items</h3>
+<% if (it.items.length > 0) { %>
+    <% it.items.forEach((item) => { %>            
+        <p>
+        <div class="card" style="width: 20rem; margin: auto;">
+            <img src="<%= item.image_link %>" alt="Card example image">
+            <div class="card-body">
+                <h4 class="card-title"><%= item.name %></h4>
+                <h5 class="card-subtitle">$<%= item.price %></h5>
+                <p class="card-text"><% item.description %></p>
+            </div>
+        </div>
+        </p>
+    <% }); %>
+<% } else { %>
+    <p>No items yet. Please add items to cart then check out.</p>
+<% } %>
+<p>Total item cost: $<%= it.totalItemCharge%>.</p>
+<p>Your delivery cost: $<%= it.deliveryCharge%>.</p>
+<p>Your total: $<%= it.totalCharge%>.</p>
+
+<h3>Billing</h3>
+<form method="POST" action="/cart/<%= it.cartId %>/payment/<%= it.totalItemCharge %>/<%= it.deliveryCharge %>">
+    <fieldset>
+        Name: <input type="text"  required name="name" placeholder="Jane Doe"/>
+        Card Number: <input type="number" required name="card_number" value="1234567890123456"/>
+        Email: <input type="text" name="email" value="Janemail"/>
+        Address: <input type="text" name="address" value="Jane Street"/>
+        <button class="btn-success" type="submit">Pay</button>
+    </fieldset>
+</form>

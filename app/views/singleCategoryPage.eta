@@ -1,0 +1,64 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.singleCategoryPage) { %> 
+    <h3>Items</h3>
+    <% if (it.items.length > 0) { %>
+        <% it.items.forEach((item) => { %>            
+            <p>
+            <div class="card" style="width: 20rem; margin: auto;">
+                <img src="<%= item.image_link %>" alt="Card example image">
+                <div class="card-body">
+                    <h4 class="card-title"><%= item.name %></h4>
+                    <h5 class="card-subtitle">$<%= item.price %></h5>
+                    <p class="card-text"><% item.description %></p>
+                    <form method="POST" action="/categories/<%= it.categoryId %>/items/<%= item.id %>/delete">
+                    <p>
+                    <% if (it.user.admin) { %>
+                            <button class="btn-danger" type="submit">Delete</button> 
+                    <% } %>
+                    </p>
+                    </form>
+                    <form method="POST" action="/categories/<%= it.categoryId %>/items/<%= item.id %>/addtocart/<%= it.cartId %>">
+
+                            <button class="btn-success" type="submit">Add to cart</button> 
+
+                    </form>
+                    <% /* <form method="POST" action="/categories/<%= it.categoryId %>/items/<%= item.id %>/removefromcart/<%= it.cartId %>">
+                        <fieldset>
+                            <button class="btn-danger" type="submit">Remove from cart</button> 
+                        </fieldset>
+                    </form> */ %>
+                </div>
+            </div>
+            </p>
+        <% }); %>
+    <% } else { %>
+        <p>No items yet. Please check back later.</p>
+    <% } %>
+    
+    <% if (it.user.admin) { %>
+        <h3>Create an item</h3>
+        <% if (it.errors) { %>    
+            <ul>
+                <% Object.keys(it.errors).forEach((attribute) => { %>
+                    <% Object.values(it.errors[attribute]).forEach((err) => { %>
+                        <li><%= err %></li>
+                    <% }); %>
+                <% }); %>
+            </ul>
+        <% } %>
+
+        <form method="POST" action="/categories/<%= it.categoryId %>/items">
+            <fieldset>
+                </br>
+                Name: <input type="text"  name="name" value="<%= it.itemName %>"/>
+                Price: <input type="number" name="price" min="0" value="<%= it.itemPrice %>" step="any"/>
+                Image Link: <input type="text" name="imageLink" value="<%= it.itemImageLink %>"/>
+                Description: <input type="text" name="description" value="<%= it.itemDescription %>"/>
+                <input type="submit" value="Create"/>
+            </fieldset>
+        </form>
+    <% }; %>
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>

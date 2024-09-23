@@ -1,0 +1,18 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.aboutPage) { %> 
+    <p style="margin-top: 40px;">
+    <img src="https://i.imgur.com/hj4xMhB.png" alt="Header image with About written on it">
+    </p>
+
+    <p>Welcome to our jewelry website! We are a small team of designers who are passionate about creating unique and beautiful jewelry pieces by hand. We specialize in making earrings, necklaces, and other accessories that are perfect for everyday wear or special occasions.</p>
+
+    <p>At our jewelry studio, we take inspiration from the beauty of nature and the simplicity of floral designs. Our jewelry pieces feature delicate floral patterns, natural gemstones, and earthy tones that reflect our love for the outdoors. We believe that jewelry is not just an accessory, but a way to express your personality and add a touch of elegance to your everyday style.</p>
+
+    <p>All of our jewelry is made by hand with care and attention to detail. We use only high-quality materials, including sterling silver, gold-filled wire, and natural gemstones. Each piece is unique, and we take pride in the fact that no two pieces are exactly the same.</p>
+
+    <p>Thank you for visiting our website and considering our handmade jewelry for your personal collection. We hope you enjoy browsing our selection and finding the perfect piece that speaks to you. If you have any questions or comments, please don't hesitate to contact us. We would love to hear from you!</p>
+
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>

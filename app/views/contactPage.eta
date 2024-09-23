@@ -1,0 +1,34 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.contactPage) { %> 
+    <h1>Binary leaves</h1>
+        
+    <form method="POST" action="/contact">
+        <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" required name="name" placeholder="Name" id="paperInputs1">
+        </div>
+        
+        <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" required name="email" placeholder="Email" id="paperInputs1">
+        </div>
+
+        <div class="form-group">
+        <label for="large-input">Message</label>
+        <textarea id="large-input" required name="message" placeholder="Let us know!"></textarea>
+        </div>
+
+        <button class="btn-success" type="submit">Submit</button>
+    </form>
+
+    <% if (it.name) { %>
+        <script>
+            alert(`<%= it.name %>'s message has been sent!`);
+        </script>
+    <% } %>
+
+
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>

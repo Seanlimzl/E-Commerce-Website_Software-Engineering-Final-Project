@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Binary Leaves</title>
+    <meta charset="UTF-8">
+    <% /* <style>
+      li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        width: 60px;
+        text-decoration: none;
+        &:hover {
+          background-color: #555;
+          color: white;
+        }
+      }
+    </style> */ %>
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.1/dist/paper.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% /* <script src="../../static/code.js" defer></script> */ %>
+  </head>
+  <body>
+      <nav class="border fixed split-nav">
+          <div class="nav-brand">
+              <h3>Binary Leaves</a></h3>
+          </div>
+          <div class="collapsible">
+              <input id="collapsible1" type="checkbox" name="collapsible1">
+              <label for="collapsible1">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+              <div class="bar4"></div>
+              <div class="bar5"></div>
+              </label>
+              <div class="collapsible-body">
+                  <ul class="inline">
+                      <li><a href="/">Home</a></li>
+                      <li><a href="/about">About</a></li>
+                      <li><a href="/contact">Contact</a></li>
+                      <li><a href="/categories">Categories</a></li>
+                      <% /* <form method="POST" action="/search">
+                        <fieldset>
+                          <legend>Search Form</legend>
+                          <label for="search">Search:</label>
+                          <input type="search" name="search" id="search" placeholder="Search here!">
+                          <button type="submit" name="submit" value="Search">Search</button>
+                        </fieldset>
+                      </form> */ %>
+                      <% if (it.user) { %>
+                      <li><a href="/cart/<%= it.user.cart_id %>">Cart</a></li>
+                      <% } %>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+    <div class="container paper">
+      <%~ it.body %>
+      <footer>
+        <p>Binary Leaves</p>
+      </footer>
+    </div>
+  </body>
+</html>

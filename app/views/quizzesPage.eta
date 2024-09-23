@@ -1,0 +1,39 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.quizzesPage) { %>
+     <h3>♡ Shopping Cart ♡</h3>
+    <table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% it.topics.forEach((topic) => { %>
+            <tr>
+            <td><a href="/quiz/<%= topic.id %>"><%= topic.id %></a></td>
+            <td><a href="/quiz/<%= topic.id %>"><%= topic.name %></a>
+                <img src="https://www.cabq.gov/artsculture/biopark/news/10-cool-facts-about-penguins/@@images/1a36b305-412d-405e-a38b-0947ce6709ba.jpeg" alt="" style="max-width: 345.0px;">
+            <td>$35.00
+            <p><button class="btn-danger">Delete</button></p>
+            </td>
+            </tr>
+        <% }); %>
+   </tbody>
+</table> 
+    <p>
+        <input type="button" class="btn-secondary" value="Checkout"/>
+    </p>    
+
+
+    <% if (it.noQuestionFoundMessages.length > 0) { %>
+        <% it.noQuestionFoundMessages.forEach((message) => { %>
+            <p><%= message %></p>
+        <% }) %>
+    <% } %>
+
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>

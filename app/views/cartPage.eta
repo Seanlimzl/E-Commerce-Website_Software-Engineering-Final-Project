@@ -1,0 +1,40 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.cartPage) { %> 
+    <h3>Cart</h3>
+    <% if (it.items.length > 0) { %>
+        <% it.items.forEach((item) => { %>            
+            <p>
+            <div class="card" style="width: 20rem; margin: auto;">
+                <img src="<%= item.image_link %>" alt="Card example image">
+                <div class="card-body">
+                    <h4 class="card-title"><%= item.name %></h4>
+                    <h5 class="card-subtitle">$<%= item.price %></h5>
+                    <p class="card-text"><%= item.description %></p>
+                    <p class="card-text">Current quantity: <%= item.quantity %></p>
+                    <% /* <form method="POST" action="/cart/<%= it.cartId %>/items/<%= item.id %>/modifycart">
+                        <fieldset>
+                            Quantity: <input type="number"  name="quantity" placeholder="1"/>
+                            <button class="btn-success" type="submit">Submit</button> 
+                        </fieldset>
+                    </form> */ %>
+                    <form method="POST" action="/cart/<%= it.cartId %>/items/<%= item.id %>/delete">
+                        <fieldset>
+                            <button class="btn-danger" type="submit">Remove from cart</button> 
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            </p>
+        <% }); %>
+        <form method="POST" action="/cart/<%= it.cartId %>/checkout">
+            <fieldset>
+                <button class="btn-success" type="submit">Checkout</button> 
+            </fieldset>
+        </form>
+    <% } else { %>
+        <p>No items yet. Please check back later.</p>
+    <% } %>
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>

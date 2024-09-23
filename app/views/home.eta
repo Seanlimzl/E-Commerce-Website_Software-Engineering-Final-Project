@@ -1,0 +1,16 @@
+<% layout("./layouts/layout.eta") %>
+
+<% if (it.homePage) { %> 
+    <p>
+    <img src="https://i.imgur.com/6ySxXZ1.jpeg" alt="Binary Leaves Logo" class="float-left">
+    </p>
+
+    <h3>Binary Leaves, a witty jewelry store.</h3>
+
+    <span>Learn more about us. <a href="/about">About Binary Leaves.</a></span></br> 
+    <span>Reach out to us. <a href="/contact">Contact</a></span></br>
+    <span>Not registered yet? <a href="/auth/register">Register here!</a></span></br>
+    <span>Already registered? <a href="/auth/login">Login here!</a></span>
+<% } else { %>
+    <p>Nothing to see here!</p>
+<% } %>
